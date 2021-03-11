@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Wyliczanie średniej</string>
+    <string name="gradesButton">OCENY</string>
+    <string name="firstName">Imię:</string>
+    <string name="lastName">Nazwisko:</string>
+    <string name="gradesCount">Liczba ocen:</string>
+    <string name="gradesCountHint">Liczba od 5 do 15</string>
+    <string name="lastNameHint">Nazwisko z dużej litery</string>
+    <string name="firstNameHint">Imię z dużej litery</string>
+    <string name="firstNameWarningText">Imię musi zaczynać się z dużej litery i nie być puste</string>
+    <string name="lastNameWarningText">Nazwisko musi zaczynać się z dużej litery i nie być puste</string>
+    <string name="gradesCountWarningText">Liczba ocen musi być liczbą z przedziału &lt;1,15&gt; </string>
+</resources>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/firstNameTextVier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/firstName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/lastNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lastName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/firstNameTextVier"
+        android:padding="10dp"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/gradesCountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gradesCount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lastNameTextView"
+        android:padding="10dp"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/firstNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/firstNameHint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/firstNameTextVier"
+        app:layout_constraintLeft_toRightOf="@id/gradesCountTextView"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/lastNameInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lastNameHint"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:singleLine="true"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@id/lastNameTextView"
+        app:layout_constraintLeft_toRightOf="@id/gradesCountTextView"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <EditText
+        android:id="@+id/gradesCountInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:digits="1234567890"
+        android:ems="10"
+        android:hint="@string/gradesCountHint"
+        android:inputType="number"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="@id/gradesCountTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toRightOf="@id/gradesCountTextView"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/buttonOceny"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gradesButton"
+        android:visibility="invisible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/gradesCountTextView"
+        />
+
+    <TextView
+        android:id="@+id/warningsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/buttonOceny"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="20dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
