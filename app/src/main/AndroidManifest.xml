@@ -11,7 +11,7 @@
         android:theme="@style/Theme.PollubProjektMobilne">
         <activity
             android:name=".GradePickingActivity"
-            android:configChanges="orientation|screenSize"> <!-- Zachowanie wartości pól https://developer.android.com/guide/topics/resources/runtime-changes-->
+            android:configChanges="orientation|screenSize" > <!-- Zachowanie wartości pól https://developer.android.com/guide/topics/resources/runtime-changes-->
             <intent-filter>
                 <action android:name=".GradePickingActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>

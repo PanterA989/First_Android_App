@@ -1,7 +1,6 @@
 package com.example.pollubprojektmobilne;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -28,13 +26,23 @@ public class GradePickingAdapter extends ArrayAdapter<GradeModel> {
     public View getView(int row, View view, ViewGroup parent){
         GradeModel grade = gradesList.get(row);
 
-        if(view == null){
+//        if(view == null){
             LayoutInflater inflater = context.getLayoutInflater();
             view = inflater.inflate(R.layout.grade_picker_layout,parent, false); //What happens if true?
-        }
+//        }
         TextView label = view.findViewById(R.id.gradeName);
         label.setText(grade.getName());
         RadioGroup radioGroup = view.findViewById(R.id.gradesGroup);
+
+        int currentGrade = grade.getGrade();
+        if(currentGrade > 0){
+
+            if(currentGrade == 2) radioGroup.check(R.id.grade2);
+            else if(currentGrade == 3) radioGroup.check(R.id.grade3);
+            else if(currentGrade == 4) radioGroup.check(R.id.grade4);
+            else if(currentGrade == 5) radioGroup.check(R.id.grade5);
+            else radioGroup.clearCheck();
+        }
         radioGroup.setOnCheckedChangeListener((group, checkedId) -> {
             if(checkedId == R.id.grade2) grade.setGrade(2);
             else if(checkedId == R.id.grade3) grade.setGrade(3);
@@ -44,6 +52,5 @@ public class GradePickingAdapter extends ArrayAdapter<GradeModel> {
         });
         return view;
     }
-
 
 }

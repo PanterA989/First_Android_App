@@ -1,7 +1,5 @@
 package com.example.pollubprojektmobilne;
 
-import android.app.Activity;
-
 public class Validator {
 
     //ToDo: Possible validation for apostrophes and dashes

@@ -4,19 +4,19 @@ import java.util.List;
 
 public class GradeModel {
     private String name;
-    private int grade;
+    private int grade = 0;
 
     public GradeModel(String name, int grade) {
         this.name = name;
         this.grade = grade;
     }
 
-    public GradeModel(String name) {
-        this.name = name;
-    }
-
     public GradeModel(int grade) {
         this.grade = grade;
+    }
+
+    public GradeModel(String name) {
+        this.name = name;
     }
 
     public int getGrade(){

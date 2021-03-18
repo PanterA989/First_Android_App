@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class GradePickingActivity extends AppCompatActivity {
 
-    private List<GradeModel> gradesList = new ArrayList<GradeModel>();
+    private List<GradeModel> gradesList = new ArrayList<>();
     private ListView gradesListView;
 
     @Override
@@ -32,6 +33,18 @@ public class GradePickingActivity extends AppCompatActivity {
         GradePickingAdapter adapter = new GradePickingAdapter(this, gradesList);
         gradesListView = (ListView)findViewById(R.id.gradesList);
         gradesListView.setAdapter(adapter);
+//        gradesListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//                gradesListView
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+//
+//            }
+//        });
+
     }
 
     public void calculateGrade(View view) {
