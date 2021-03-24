@@ -9,20 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PollubProjektMobilne">
-        <activity
-            android:name=".GradePickingActivity"
-            android:configChanges="orientation|screenSize" > <!-- Zachowanie wartości pól https://developer.android.com/guide/topics/resources/runtime-changes-->
+        <activity android:name=".GradePickingActivity">
             <intent-filter>
                 <action android:name=".GradePickingActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:configChanges="orientation|screenSize"> <!-- Zablokowanie wywoływania TextWatcher'a przy obrocie ekranu -->
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
