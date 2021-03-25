@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitGrades(View view) {
         if(gpa > 0){ //Wykonanie jesli zostala obliczona srednia
-            Toast myTosas =Toast.makeText(this, "TEST", Toast.LENGTH_SHORT); //Wyswietlenie dymku na dole ekranu
-            myTosas.show(); //Wyswietlenie dymku na dole ekranu
+            Toast myTosas =Toast.makeText(this, gpaMessage, Toast.LENGTH_SHORT); //Utworzenie Toast
+            myTosas.show(); //Wyswietlenie Toast na dole ekranu
             try {
                 Thread.sleep(2000); //Uspienie na 2 sekundy
             } catch (InterruptedException e) {
