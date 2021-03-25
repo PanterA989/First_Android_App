@@ -83,12 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!Validator.checkName(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci imienia
-                errors[0] = getString(R.string.firstNameWarningText); //Ustawienie tekstu bledu do tablicy
-            } else {
-                errors[0] = null; //Usuniecie tekstu bledu z tablicy
+            if(gpa == 0){
+                if (!Validator.checkName(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci imienia
+                    errors[0] = getString(R.string.firstNameWarningText); //Ustawienie tekstu bledu do tablicy
+                } else {
+                    errors[0] = null; //Usuniecie tekstu bledu z tablicy
+                }
+                updateErrors(); //Wywolanie metody oblugujacej bledy
             }
-            updateErrors(); //Wywolanie metody oblugujacej bledy
         }
     };
 
@@ -104,12 +106,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!Validator.checkName(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci nazwiska
-                errors[1] = getString(R.string.lastNameWarningText); //Ustawienie tekstu bledu do tablicy
-            } else {
-                errors[1] = null; //Usuniecie tekstu bledu z tablicy
+            if(gpa == 0){
+                if (!Validator.checkName(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci nazwiska
+                    errors[1] = getString(R.string.lastNameWarningText); //Ustawienie tekstu bledu do tablicy
+                } else {
+                    errors[1] = null; //Usuniecie tekstu bledu z tablicy
+                }
+                updateErrors(); //Wywolanie metody oblugujacej bledy
             }
-            updateErrors(); //Wywolanie metody oblugujacej bledy
         }
     };
 
@@ -125,12 +129,14 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (!Validator.checkGradesCount(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci liczby ocen
-                errors[2] = getString(R.string.gradesCountWarningText); //Ustawienie tekstu bledu do tablicy
-            } else {
-                errors[2] = null; //Usuniecie tekstu bledu z tablicy
+            if(gpa == 0){
+                if (!Validator.checkGradesCount(s.toString()) && s.toString().length() != 0) { //Sprawdzenie poprawnosci liczby ocen
+                    errors[2] = getString(R.string.gradesCountWarningText); //Ustawienie tekstu bledu do tablicy
+                } else {
+                    errors[2] = null; //Usuniecie tekstu bledu z tablicy
+                }
+                updateErrors(); //Wywolanie metody oblugujacej bledy
             }
-            updateErrors(); //Wywolanie metody oblugujacej bledy
         }
     };
 
@@ -164,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitGrades(View view) {
         if(gpa > 0){ //Wykonanie jesli zostala obliczona srednia
-            Toast.makeText(MainActivity.this, gpaMessage, Toast.LENGTH_SHORT).show(); //Wyswietlenie dymku na dole ekranu
+            Toast myTosas =Toast.makeText(this, "TEST", Toast.LENGTH_SHORT); //Wyswietlenie dymku na dole ekranu
+            myTosas.show(); //Wyswietlenie dymku na dole ekranu
             try {
                 Thread.sleep(2000); //Uspienie na 2 sekundy
             } catch (InterruptedException e) {
