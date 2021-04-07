@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -16,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private float gpa = 0; //Srednia
     private String gpaMessage, gpaButtonText, gpaValueMessage;
     private boolean haveGPA = false; //Flaga obliczonej sredniej
+    private boolean visibleBefore = false; //Flaga poprzedniej widoczności przycisku
 
     private static final int REQUEST_FOR_GPA = 836; //Losowy niezajety request code dla obliczenia GPA
 
@@ -149,32 +154,37 @@ public class MainActivity extends AppCompatActivity {
                 warningTextView.append(error + "\n"); //Dodanie tekstu bledu pod przyciskiem
                 allGood = false;
                 buttonOceny.setVisibility(Button.INVISIBLE); //Zmiana widocznosci przycisku
+                visibleBefore = false;
             }
         }
         if(firstNameInput.length() == 0 || lastNameInput.length() == 0 || gradesCountInput.length() == 0){ //Sprawdzenie czy pola nie sa puste
             buttonOceny.setVisibility(Button.INVISIBLE); //Zmiana widocznosci przycisku
+            visibleBefore = false;
             return;
         }
 
         if (allGood && firstNameInput.length() != 0 && lastNameInput.length() != 0 && gradesCountInput.length() != 0) { //Wykonanie jesli wprowadzone dane sa poprawne
             buttonOceny.setVisibility(Button.VISIBLE);
-            if(firstNameInput.getText().toString().equals("Barrel") &&  lastNameInput.getText().toString().equals("Roll")){ //Specjalna niespodzianka
+            if(!visibleBefore) //Jeśli przycisk pojawia się
+            {
                 RotateAnimation rotateAnimation = new RotateAnimation(0,360, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-                rotateAnimation.setDuration(1000);
+                rotateAnimation.setDuration(400);
                 rotateAnimation.setInterpolator(new LinearInterpolator());
                 buttonOceny.startAnimation(rotateAnimation);
             }
+            visibleBefore = true;
         }
     }
 
 
-    public void submitGrades(View view) {
+    public void submitGrades(View view){
         if(gpa > 0){ //Wykonanie jesli zostala obliczona srednia
             Toast myTosas =Toast.makeText(this, gpaMessage, Toast.LENGTH_SHORT); //Utworzenie Toast
             myTosas.show(); //Wyswietlenie Toast na dole ekranu
             try {
                 Thread.sleep(2000); //Uspienie na 2 sekundy
             } catch (InterruptedException e) {
+                Log.i("Interrupt exception", "Interrupt exception"); //Zapisanie błędu
             } finally {
                 this.finishAndRemoveTask(); //Zamkniecie aplikacji i usuniecie jej z ostatnich aplikacji
             }
@@ -188,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Wykonanie po zakonczeniu wywolanego Activity
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQUEST_FOR_GPA){ //Jesli wykonany byl Intent do obliczenia oceny
             if(resultCode == RESULT_OK){ //Jesli zwrocony kod to OK
@@ -206,14 +216,14 @@ public class MainActivity extends AppCompatActivity {
                     buttonOceny.setText(gpaButtonText); //Ustawienie tekstu przycisku ze zmiennej
                     gpaMessage = "Wysyłam podanie o zaliczenie warunkowe."; //Ustawienie zawartosci zmiennej z tekstem dla powiadomienia Toast
                 }
-                gpaValueMessage = "Twoja średnia to: "+String.format("%.02f",gpa);  //Ustawienie zawartosci zmiennej z tekstem dla TextView pod przyciskiem
+                gpaValueMessage = "Twoja średnia to: "+String.format(Locale.ENGLISH,"%.02f",gpa);  //Ustawienie zawartosci zmiennej z tekstem dla TextView pod przyciskiem
                 warningTextView.setText(gpaValueMessage); //Ustawienie tekstu z obliczona srednia do TextView pod przyciskiem
             }
         }
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         outState.putString("firstName", firstNameInput.getText().toString()); //Zapisanie tekstu imienia
         outState.putString("lastName", lastNameInput.getText().toString()); //Zapisanie tekstu nazwiska
         outState.putString("gradesCount", gradesCountInput.getText().toString()); //Zapisanie tekstu liczby ocen
